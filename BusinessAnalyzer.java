@@ -1,5 +1,5 @@
 //Name: Anson Lee
-//package com.usf.245.a2;
+//package com.usf.245.a2; //breaks my entire main it seems
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
