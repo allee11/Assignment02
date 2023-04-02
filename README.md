@@ -11,3 +11,6 @@ naics 4855 summary leads to...
 Total Businesses: 1364
 Zip Codes: 302
 Neighborhood: 38
+
+
+Also, my implementation might be different from others since I will use the line of the csv file even if one of the factors is not there. For example, if the zip code is missing, I will still create a node for the naics if it exists, but there will just not be a zip code attached to that specific range
