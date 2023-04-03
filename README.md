@@ -13,4 +13,6 @@ Zip Codes: 302
 Neighborhood: 38
 
 
-Also, my implementation might be different from others since I will use the line of the csv file even if one of the factors is not there. For example, if the zip code is missing, I will still create a node for the naics if it exists, but there will just not be a zip code attached to that specific range
+Also, my implementation might be different from others since I will use the line of the csv file even if one of the factors is not there. For example, if the zip code is missing, I will still create a node for the naics if it exists, but there will just not be a zip code attached to that specific range.
+
+Also, for new business last year, I was not sure whether or not to increase the count if it closes in the same year so I decided to not increment if it closed the same year.
