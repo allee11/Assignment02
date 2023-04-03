@@ -1,5 +1,6 @@
 //Name: Anson Lee
-//package com.usf.245.a2; //breaks my entire main it seems
+//package com.usf.245.a2; //assignment asks for this but gives my problem lots of errors, so not sure what to do
+import javax.crypto.NullCipher;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -252,9 +253,12 @@ public class BusinessAnalyzer {
                 System.out.println("Closed Businesses: " + listZ.getClosedBusiness());
                 System.out.println("New Business in last year: " + listZ.getNewBusiness());
             } else if(input.equalsIgnoreCase("History")) {//give history of user inputs
+                ArrayDeque saveHistory = new ArrayDeque();
                 while(userHistory.size() > 0) {
+                    saveHistory.add(userHistory.peek());
                     System.out.println(userHistory.pop());
                 }
+                userHistory = saveHistory;
             } else {
                 String[] response = input.trim().split(" ");//splits the input by spaces
 
@@ -319,6 +323,8 @@ public class BusinessAnalyzer {
                                 if(!found) {
                                     System.out.println("NAICS does not exist");
                                 }
+                            } else {
+                                System.out.println("Not a valid input");
                             }
                         } catch (NumberFormatException nfe) {
                             System.out.println("Not a valid input.");
@@ -348,9 +354,12 @@ public class BusinessAnalyzer {
                 System.out.println("Closed Businesses: " + listZ.getClosedCount());
                 System.out.println("New Business in last year: " + listZ.getNewBusinessCount());
             } else if(input.equalsIgnoreCase("History")) {
+                ArrayDeque saveHistory = new ArrayDeque();
                 while(userHistory.size() > 0) {
+                    saveHistory.add(userHistory.peek());
                     System.out.println(userHistory.pop());
                 }
+                userHistory = saveHistory;
             } else {
                 String[] response = input.trim().split(" ");
 
@@ -364,7 +373,8 @@ public class BusinessAnalyzer {
                                 boolean found = false;
                                 Iterator<ArrObject> itZ = listZ.iterator();
 
-                                if(itZ.get().getZip().equals(response[1])) { //check first node
+                                if(itZ.get().getZip().equals(response[1])) { //check first object
+                                    System.out.println(itZ.get().getZip());
                                     System.out.println(itZ.get().getZip() + " Business Summary");
                                     System.out.println("Total Businesses: " + itZ.get().getBusinessSize());
                                     System.out.println("Business Types: " + itZ.get().getBusinessTypeSize());
@@ -372,8 +382,8 @@ public class BusinessAnalyzer {
                                     found = true;
                                 }
 
-                                while(!found && itZ.hasNext()) {//check all after first node
-                                    if(itZ.next().getZip().equals(response[1])) {
+                                while(!found && itZ.hasNext()) {//check all objects
+                                    if(itZ.get().getZip().equals(response[1])) {
                                         System.out.println(itZ.get().getZip() + " Business Summary");
                                         System.out.println("Total Businesses: " + itZ.get().getBusinessSize());
                                         System.out.println("Business Types: " + itZ.get().getBusinessTypeSize());
@@ -381,6 +391,7 @@ public class BusinessAnalyzer {
                                         found = true;
                                         break;
                                     }
+                                    itZ.next();
                                 }
 
                                 if(!found) {
@@ -392,7 +403,7 @@ public class BusinessAnalyzer {
 
                                 Iterator<ArrObject> itN = listN.iterator();//iterator for naics
 
-                                //check first node
+                                //check first object
                                 if(((Comparable) response[1]).compareTo(itN.get().getMinNAICS()) >= 0 && ((Comparable) response[1]).compareTo(itN.get().getMaxNAICS()) <= 0) {
                                     System.out.println("Total Businesses: " + itN.get().getBusinessSize());
                                     System.out.println("Zip Codes: " + itN.get().getZipCodeSize());
@@ -400,7 +411,7 @@ public class BusinessAnalyzer {
                                     found = true;
                                 }
 
-                                while(!found && itN.hasNext()) {//check all after first node
+                                while(!found && itN.hasNext()) {//check all objects
                                     if(((Comparable) response[1]).compareTo(itN.get().getMinNAICS()) >= 0 && ((Comparable) response[1]).compareTo(itN.get().getMaxNAICS()) <= 0) {
                                         System.out.println("Total Businesses: " + itN.get().getBusinessSize());
                                         System.out.println("Zip Codes: " + itN.get().getZipCodeSize());
